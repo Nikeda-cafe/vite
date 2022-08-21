@@ -2,12 +2,16 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue'
+import WordList from './WordList.vue';
 
-import { reactive } from 'vue';
-const state = reactive({name:'',score:0})
-const scoreUp = () => {
-  state.score++;
-}
+
+
+import { reactive, ref } from 'vue';
+const figures = ref([
+  {id: 1, name: 'one'},
+  {id: 2, name: 'two'},
+  {id: 3, name: 'three'},
+])
 
 </script>
 
@@ -21,9 +25,15 @@ const scoreUp = () => {
     </a>
   </div> -->
   <HelloWorld msg="Vite + Vue" />
-  <h1>{{state.name}} : {{state.score}}</h1>
+  <WordList :words=figures></WordList>
+  <!-- <h1>{{state.name}} : {{state.score}}</h1>
   <input type="text" v-model="state.name">
   <button @click="scoreUp">カウントアップ</button>
+  <ul>
+  <li v-for="v in state.histories">
+   {{v.userName}} : {{v.newDate}} : {{v.newScore}}
+  </li>
+  </ul> -->
 </template>
 
 <style scoped>
