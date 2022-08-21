@@ -2,18 +2,28 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue'
+
+import { reactive } from 'vue';
+const state = reactive({name:'',score:0})
+const scoreUp = () => {
+  state.score++;
+}
+
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
-  </div>
+  </div> -->
   <HelloWorld msg="Vite + Vue" />
+  <h1>{{state.name}} : {{state.score}}</h1>
+  <input type="text" v-model="state.name">
+  <button @click="scoreUp">カウントアップ</button>
 </template>
 
 <style scoped>
