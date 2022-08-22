@@ -7,11 +7,17 @@ import WordList from './WordList.vue';
 
 
 import { reactive, ref } from 'vue';
+const msg = ref('選択してください')
 const figures = ref([
   {id: 1, name: 'one'},
   {id: 2, name: 'two'},
   {id: 3, name: 'three'},
-])
+]);
+const selectWord = (id,name) => {
+  msg.value = 'click'+ id+','+name
+  alert('click'+ id+','+name)
+}
+const show = ref(true)
 
 </script>
 
@@ -25,7 +31,12 @@ const figures = ref([
     </a>
   </div> -->
   <HelloWorld msg="Vite + Vue" />
-  <WordList :words=figures></WordList>
+  <input type="checkbox" v-model="show">
+  <transition>
+    <p v-show="show">テスト</p>
+  </transition>
+  <h1>{{msg}}</h1>
+  <WordList :words=figures @select-word="selectWord"></WordList>
   <!-- <h1>{{state.name}} : {{state.score}}</h1>
   <input type="text" v-model="state.name">
   <button @click="scoreUp">カウントアップ</button>
@@ -47,5 +58,12 @@ const figures = ref([
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.v-leave-active, .v-enter-active{
+  transition: opacity .0s;
+}
+.v-enter-from, v-leave-to{
+  opacity:0;
 }
 </style>
